@@ -1,3 +1,5 @@
+from array import array
+
 def wave_to_samples(wave, time, sample_rate):
 	n_samples = int(time * sample_rate)
 	return [wave(float(i)/sample_rate) for i in range(n_samples)]
@@ -10,3 +12,7 @@ def samples_to_wave(samples, sample_rate):
 		else:
 			return 0
 			
+def render_to_file(samples, filename="out.raw"):
+	fout = open(filename, 'wb')
+	array(samples).tofile(fout)
+	fout.close()
